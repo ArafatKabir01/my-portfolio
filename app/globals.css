@@ -271,6 +271,11 @@ body.light .lp-nav { background: rgba(255,255,255,0.7); border-color: rgba(20,20
 
 /* ─────────────────────────── HERO ────────────────────────── */
 .lp-hero { position: relative; padding: 60px 0 40px; display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center; }
+/* Grid items default to min-width:auto, so the hero columns refuse to shrink
+   below their content's intrinsic width — the white-space:pre code window and
+   the portrait image were pushing each track ~40px past a phone's width and
+   leaking a sliver of horizontal scroll. min-width:0 lets them shrink to fit. */
+.lp-hero > .lp-hero-copy, .lp-hero > .lp-hero-visual { min-width: 0; }
 /* Full-bleed hero photo background, layered subtly behind the hero content.
    Breaks out of the padded .lp column to span the full viewport width. */
 .lp-hero::before {
@@ -778,7 +783,9 @@ body[data-page="case-study"] { background: #08090c; }
 .study-hero { padding: 56px 0 10px; position: relative; text-align: center; }
 .study-hero .deco {
   position: absolute; left: 50%; top: 120px; transform: translateX(-50%);
-  width: 520px; height: 320px; border-radius: 50%;
+  /* never wider than the viewport — a fixed 520px here pushed the whole page
+     past the right edge on phones and created a horizontal scrollbar. */
+  width: min(520px, 92vw); height: 320px; border-radius: 50%;
   background: radial-gradient(circle, color-mix(in srgb, var(--cs-brand) 22%, transparent), transparent 70%);
   filter: blur(60px); pointer-events: none; z-index: 0;
 }
@@ -1394,6 +1401,16 @@ body[data-page="case-study"] { background: #08090c; }
   .hero-badge { right: 8px; bottom: 14px; }
   .admin-row { grid-template-columns: 44px 1fr; gap: 12px; }
   .admin-num { font-size: 32px; }
+}
+/* phones: the sticky top bar is tight once "Back to work" + breadcrumb + two
+   action chips share one row. Drop the redundant "case-studies / slug" crumb
+   (the back chip and the H1 already say where you are) and tighten spacing so
+   the remaining controls stay on one line and stay easy to tap. */
+@media (max-width: 480px) {
+  .topbar { padding: 10px 12px; gap: 8px; }
+  .topbar .crumb { display: none; }
+  .topbar .back { padding: 6px 8px; }
+  .topbar .actions { gap: 6px; }
 }
 
 /* ─── Responsive ─── */
