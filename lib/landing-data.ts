@@ -51,7 +51,7 @@ export const HERO_CODE = [
 ] as const;
 
 export const STATS = [
-  { icon: "calendar", value: "3+", label: "Years Experience", sub: "Building since 2019" },
+  { icon: "calendar", value: "3+", label: "Years Experience", sub: "Building since 2021" },
   { icon: "rocket", value: "20+", label: "Projects Completed", sub: "Across various domains" },
   { icon: "github", value: "530", label: "GitHub Contributions", sub: "Total contributions" },
   { icon: "zap", value: "78%", label: "Performance Score", sub: "Top 30% developers" },
