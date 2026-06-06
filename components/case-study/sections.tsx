@@ -103,7 +103,7 @@ export function Info({ data }: { data: CaseStudy }) {
       <div className="info-grid">
         <div className="info-brand reveal">
           <div className="info-logo">
-            <span className="info-logo-mark" aria-hidden>YC</span>
+            <span className="info-logo-mark" aria-hidden>{data.info.logoMark}</span>
           </div>
           <h4>
             <b>{data.info.logoText}</b>
@@ -149,7 +149,7 @@ export function Challenge({ data }: { data: CaseStudy }) {
             style={{ ["--i" as string]: i, marginLeft: `${i * 34}px` } as React.CSSProperties}
           >
             <span className="ch-num">{i + 1}</span>
-            <span className="ch-text" dangerouslySetInnerHTML={{ __html: emph(c) }} />
+            <span className="ch-text" dangerouslySetInnerHTML={{ __html: emph(c, data.emphasize) }} />
           </li>
         ))}
       </ol>
@@ -328,7 +328,6 @@ export function Impact({ data }: { data: CaseStudy }) {
       <Head>Business Impact</Head>
       <p className="s-lead reveal">After delivering the platform, the client gained:</p>
       <div className="impact-split">
-        <ImageFrame src={data.impactImg} alt="Business impact" ratio="9/8" className="impact-img" />
         <div className="impact-black reveal">
           {data.impact.map((it) => (
             <div className="impact-row" key={it}>
@@ -337,6 +336,7 @@ export function Impact({ data }: { data: CaseStudy }) {
           ))}
           <p className="impact-close">{data.impactClose}</p>
         </div>
+        <ImageFrame src={data.impactImg} alt="Business impact" ratio="9/8" className="impact-img" />
       </div>
     </section>
   );
@@ -377,7 +377,7 @@ function FeatureBlock({ f }: { f: CaseStudy["features"][number]["items"][number]
       <div className={`feat-shots ${f.wide ? "wide" : "tall"}`}>
         {f.shots.map((src, i) => (
           <ImageFrame
-            key={src}
+            key={`${src}-${i}`}
             src={src}
             alt={`${f.title} — screen ${i + 1}`}
             ratio={f.wide ? "5/4" : "9/16"}
@@ -458,15 +458,9 @@ export function Feedback({ data }: { data: CaseStudy }) {
 function escapeHtml(s: string) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
-const EMPH = [
-  "stable, verified jobs",
-  "find it hard",
-  "don't support milestone payments",
-  "Communication gaps",
-];
-function emph(line: string) {
+function emph(line: string, phrases: readonly string[] = []) {
   let out = escapeHtml(line);
-  for (const phrase of EMPH) {
+  for (const phrase of phrases) {
     const safe = escapeHtml(phrase);
     out = out.replace(safe, `<b>${safe}</b>`);
   }

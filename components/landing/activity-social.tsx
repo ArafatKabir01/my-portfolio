@@ -61,7 +61,12 @@ export function ActivitySocial() {
             <div key={i} className="lp-quote">
               <p>&ldquo;{t.quote}&rdquo;</p>
               <div className="lp-quote-foot">
-                <span className="lp-avatar">{initials(t.name)}</span>
+                {(t as any).image ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={(t as any).image} alt={t.name} className="lp-avatar" style={{ objectFit: "cover", background: "none" }} />
+                ) : (
+                  <span className="lp-avatar">{initials(t.name)}</span>
+                )}
                 <span>
                   <b>{t.name}</b>
                   <span>{t.role}</span>
@@ -84,7 +89,12 @@ export function ActivitySocial() {
           </div>
           {ARTICLES.map((a, i) => (
             <a key={i} href="#" className="lp-article" data-cursor="hover">
-              <span className="lp-article-thumb" style={{ ["--a" as string]: a.accent }} />
+              {(a as any).image ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={(a as any).image} alt={a.title} className="lp-article-thumb" style={{ objectFit: "cover", background: "none" }} />
+              ) : (
+                <span className="lp-article-thumb" style={{ ["--a" as string]: (a as any).accent }} />
+              )}
               <span>
                 <h6>{a.title}</h6>
                 <span className="meta">

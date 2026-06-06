@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Arafat Kabir — Resume</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  :root {
+    --navy:    #07070b;   /* sidebar bg — portfolio --bg     */
+    --navy-2:  #111118;   /* sidebar card — portfolio --card */
+    --blue:    #7c5cff;   /* primary accent — portfolio purple */
+    --blue-soft:#a78bfa;  /* portfolio --accent-2            */
+    --ink:     #1f2937;   /* main headings       */
+    --body:    #4b5563;   /* main body           */
+    --muted:   #9aa6b6;   /* sidebar muted       */
+    --line:    #e5e7eb;   /* main hairlines      */
+    --side-line:#20202c;  /* sidebar hairlines — portfolio --border */
+    --chip-bg: #f3f4f6;
+    --chip-line:#e5e7eb;
+  }
+
+  html, body {
+    font-family: "Inter", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--body);
+    font-size: 10px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  .page { width: 210mm; min-height: 297mm; display: grid; grid-template-columns: 72mm 1fr; background: #fff; }
+
+  /* ───────────────  SIDEBAR  ─────────────── */
+  .side { background: var(--navy); color: #c7d2de; padding: 24px 20px 30px; }
+
+  .avatar-wrap { display: flex; justify-content: center; margin-bottom: 22px; }
+  .avatar {
+    width: 116px; height: 116px; border-radius: 50%;
+    object-fit: cover; object-position: center top;
+    border: 3px solid var(--blue);
+    box-shadow: 0 0 0 5px rgba(124,92,255,.18);
+  }
+
+  .s-sec { margin-bottom: 20px; }
+  .s-sec:last-child { margin-bottom: 0; }
+  .s-sec > h2 {
+    font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: #fff; font-weight: 700; margin-bottom: 11px; padding-bottom: 7px;
+    position: relative;
+  }
+  .s-sec > h2::after { content: ""; position: absolute; left: 0; bottom: 0; width: 42px; height: 2px; background: var(--blue); }
+  .s-sec > h2::before { content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 1px; background: var(--side-line); }
+
+  /* contact */
+  .c-row { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; font-size: 9.4px; }
+  .c-row:last-child { margin-bottom: 0; }
+  .c-row .ic { color: var(--blue-soft); flex: 0 0 14px; }
+  .c-row span, .c-row a { color: #d4dde7; word-break: break-word; }
+
+  /* skills */
+  .sk-group { margin-bottom: 13px; }
+  .sk-group:last-child { margin-bottom: 0; }
+  .sk-group h3 { font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--blue-soft); font-weight: 700; margin-bottom: 7px; }
+  .sk-list { list-style: none; }
+  .sk-list li { position: relative; padding-left: 13px; font-size: 9.4px; color: #d4dde7; margin-bottom: 4.5px; }
+  .sk-list li::before { content: ""; position: absolute; left: 0; top: 5px; width: 4px; height: 4px; border-radius: 50%; background: var(--blue); }
+
+  /* education / certs blocks */
+  .blk { display: flex; gap: 11px; align-items: flex-start; margin-bottom: 12px; }
+  .blk:last-child { margin-bottom: 0; }
+  .blk .badge {
+    flex: 0 0 26px; width: 26px; height: 26px; border-radius: 50%;
+    background: var(--blue); display: flex; align-items: center; justify-content: center; color: #fff;
+  }
+  .blk .info h4 { font-size: 9.8px; color: #fff; font-weight: 700; line-height: 1.25; }
+  .blk .info p { font-size: 9px; color: #aebccb; margin-top: 1px; line-height: 1.35; }
+
+  /* ───────────────  MAIN  ─────────────── */
+  .main { padding: 30px 30px 30px; }
+
+  .name { font-size: 32px; font-weight: 800; color: var(--ink); letter-spacing: 1px; line-height: 1; text-transform: uppercase; }
+  .name b { color: var(--blue); font-weight: 800; }
+  .title { font-size: 13px; letter-spacing: 5px; color: var(--blue); font-weight: 600; text-transform: uppercase; margin-top: 9px; }
+  .intro { font-size: 10.4px; color: var(--body); line-height: 1.6; margin-top: 12px; }
+
+  .hr { height: 1px; background: var(--line); margin: 18px 0; }
+
+  .m-head { display: flex; align-items: center; gap: 11px; margin-bottom: 14px; }
+  .m-head .glyph { width: 26px; height: 26px; border-radius: 50%; background: var(--blue); display: flex; align-items: center; justify-content: center; color: #fff; }
+  .m-head h2 { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink); font-weight: 700; }
+
+  /* experience timeline */
+  .xp-wrap { position: relative; padding-left: 20px; }
+  .xp-wrap::before { content: ""; position: absolute; left: 4px; top: 5px; bottom: 6px; width: 2px; background: var(--line); }
+  .xp { position: relative; margin-bottom: 17px; }
+  .xp:last-child { margin-bottom: 0; }
+  .xp::before { content: ""; position: absolute; left: -20px; top: 3px; width: 10px; height: 10px; border-radius: 50%; background: #fff; border: 2px solid #cbd5e1; }
+  .xp.cur::before { border-color: var(--blue); background: var(--blue); }
+  .xp-top { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; }
+  .xp-title { font-size: 11.5px; color: var(--ink); font-weight: 700; }
+  .xp-co { font-size: 10px; color: var(--blue); font-weight: 600; margin-top: 1px; }
+  .xp-when { font-size: 9px; color: var(--muted); white-space: nowrap; text-align: right; line-height: 1.45; }
+  .xp-when .loc { color: #b6c0cd; }
+  .xp ul { list-style: none; margin-top: 6px; }
+  .xp ul li { position: relative; padding-left: 13px; font-size: 9.6px; color: var(--body); margin-bottom: 3px; }
+  .xp ul li::before { content: ""; position: absolute; left: 0; top: 5px; width: 3px; height: 3px; border-radius: 50%; background: #9aa6b6; }
+
+  /* projects */
+  .proj { margin-bottom: 12px; }
+  .proj:last-child { margin-bottom: 0; }
+  .proj-title { font-size: 11px; color: var(--ink); font-weight: 700; display: inline-flex; align-items: center; gap: 5px; }
+  .proj-title .lnk { color: var(--blue); }
+  .proj-desc { font-size: 9.6px; color: var(--body); margin-top: 2px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+  .tags span { font-size: 8.4px; color: var(--body); background: var(--chip-bg); border: 1px solid var(--chip-line); padding: 2.5px 9px; border-radius: 999px; }
+
+  /* achievements */
+  .ach { display: flex; gap: 9px; align-items: flex-start; margin-bottom: 9px; }
+  .ach:last-child { margin-bottom: 0; }
+  .ach .chk { flex: 0 0 14px; color: var(--blue); margin-top: 1px; }
+  .ach p { font-size: 9.8px; color: var(--body); }
+
+  svg.i { display: block; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ─────────  SIDEBAR  ───────── -->
+  <aside class="side">
+    <div class="avatar-wrap">
+      <img class="avatar" src="__AVATAR__" alt="Arafat Kabir" />
+    </div>
+
+    <!-- Contact -->
+    <div class="s-sec">
+      <h2>Contact</h2>
+      <div class="c-row">
+        <svg class="i ic" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+        <a href="mailto:nabil786.ak@gmail.com">nabil786.ak@gmail.com</a>
+      </div>
+      <div class="c-row">
+        <svg class="i ic" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2Z"/></svg>
+        <span>(+880) 1856-533434</span>
+      </div>
+      <div class="c-row">
+        <svg class="i ic" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Chottagram, Bangladesh 4217</span>
+      </div>
+      <div class="c-row">
+        <svg class="i ic" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+        <a href="https://arafatkabir.vercel.app/">arafatkabir.vercel.app</a>
+      </div>
+      <div class="c-row">
+        <svg class="i ic" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5a4.3 4.3 0 0 0-1.2-3 4 4 0 0 0-.1-3s-1-.3-3.3 1.3a11.4 11.4 0 0 0-6 0C6.8.5 5.8.8 5.8.8a4 4 0 0 0-.1 3 4.3 4.3 0 0 0-1.2 3c0 3.5 3 5.5 6 5.5a4.8 4.8 0 0 0-1 3.5V22"/></svg>
+        <a href="https://github.com/ArafatKabir01">github.com/ArafatKabir01</a>
+      </div>
+      <div class="c-row">
+        <svg class="i ic" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14ZM8.3 18.3v-8H5.6v8h2.7ZM7 9.1A1.6 1.6 0 1 0 7 5.9a1.6 1.6 0 0 0 0 3.2Zm11.4 9.2v-4.4c0-2.4-.5-4.2-3.3-4.2-1.3 0-2.2.7-2.6 1.4h0v-1.2h-2.6v8h2.7v-4c0-1 .2-2 1.5-2s1.3 1.2 1.3 2.1v3.9h2.6Z"/></svg>
+        <a href="https://www.linkedin.com/in/arafat-ibne-kabir">in/arafat-ibne-kabir</a>
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="s-sec">
+      <h2>Skills</h2>
+      <div class="sk-group">
+        <h3>Frontend</h3>
+        <ul class="sk-list">
+          <li>HTML5 &amp; CSS3</li>
+          <li>JavaScript (ES6+)</li>
+          <li>TypeScript</li>
+          <li>React.js</li>
+          <li>Next.js (App Router)</li>
+          <li>Tailwind CSS / shadcn/ui</li>
+          <li>Redux &amp; Framer Motion</li>
+          <li>Responsive Design &amp; a11y</li>
+        </ul>
+      </div>
+      <div class="sk-group">
+        <h3>Backend &amp; Real-time</h3>
+        <ul class="sk-list">
+          <li>Node.js &amp; Express</li>
+          <li>Socket.IO &amp; WebSockets</li>
+          <li>REST &amp; GraphQL APIs</li>
+          <li>AI Integration</li>
+        </ul>
+      </div>
+      <div class="sk-group">
+        <h3>Tools</h3>
+        <ul class="sk-list">
+          <li>Git &amp; GitHub</li>
+          <li>VS Code</li>
+          <li>Figma</li>
+          <li>Vercel</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="s-sec">
+      <h2>Education</h2>
+      <div class="blk">
+        <span class="badge"><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1 2.7 3 6 3s6-2 6-3v-5"/></svg></span>
+        <div class="info">
+          <h4>B.Sc. in Computer Science</h4>
+          <p>International Islamic University Chittagong (IIUC)</p>
+          <p>2019 – 2023</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Certifications -->
+    <div class="s-sec">
+      <h2>Certifications</h2>
+      <div class="blk">
+        <span class="badge"><svg class="i" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M8.2 13 7 22l5-3 5 3-1.2-9"/></svg></span>
+        <div class="info"><h4>Complete Web Development</h4><p>Programming Hero</p></div>
+      </div>
+      <div class="blk">
+        <span class="badge"><svg class="i" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15 9 22 9.3 16.5 13.8 18.5 21 12 16.8 5.5 21 7.5 13.8 2 9.3 9 9"/></svg></span>
+        <div class="info"><h4>Next.js &amp; React</h4><p>Advanced Patterns</p></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ─────────  MAIN  ───────── -->
+  <main class="main">
+    <div class="name">ARAFAT <b>KABIR</b></div>
+    <div class="title">Frontend Engineer</div>
+    <p class="intro">
+      Frontend Engineer with 3+ years of experience building responsive, user-centric web applications
+      using React, Next.js, and modern TypeScript. Passionate about crafting clean UIs, writing
+      maintainable code, and delivering exceptional digital experiences at scale.
+    </p>
+
+    <div class="hr"></div>
+
+    <!-- Experience -->
+    <div class="m-head">
+      <span class="glyph"><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></span>
+      <h2>Experience</h2>
+    </div>
+    <div class="xp-wrap">
+      <div class="xp cur">
+        <div class="xp-top">
+          <div><div class="xp-title">Senior Frontend Engineer</div><div class="xp-co">Rootdevs</div></div>
+          <div class="xp-when">Aug 2024 – Present<br/><span class="loc">Dhaka, BD</span></div>
+        </div>
+        <ul>
+          <li>Lead front-end architecture and UI delivery for key products across web and mobile.</li>
+          <li>Mentor developers and set high-performance design-system standards.</li>
+          <li>Built scalable, reusable component libraries with Next.js, TypeScript &amp; Tailwind.</li>
+        </ul>
+      </div>
+
+      <div class="xp cur">
+        <div class="xp-top">
+          <div><div class="xp-title">Project Manager</div><div class="xp-co">Quickxero</div></div>
+          <div class="xp-when">Jan 2025 – Present<br/><span class="loc">Remote</span></div>
+        </div>
+        <ul>
+          <li>Lead agile ceremonies, project planning, and cross-functional teams.</li>
+          <li>Align business goals with development scope for on-time, high-quality shipping.</li>
+        </ul>
+      </div>
+
+      <div class="xp">
+        <div class="xp-top">
+          <div><div class="xp-title">Mid Frontend Engineer</div><div class="xp-co">Rootdevs</div></div>
+          <div class="xp-when">Apr 2024 – Aug 2024<br/><span class="loc">Dhaka, BD</span></div>
+        </div>
+        <ul>
+          <li>Owned major features end-to-end and optimized rendering performance.</li>
+          <li>Integrated complex third-party REST &amp; GraphQL APIs with real-time data.</li>
+        </ul>
+      </div>
+
+      <div class="xp">
+        <div class="xp-top">
+          <div><div class="xp-title">Junior Frontend Engineer</div><div class="xp-co">Rootdevs</div></div>
+          <div class="xp-when">Dec 2023 – Apr 2024<br/><span class="loc">Dhaka, BD</span></div>
+        </div>
+        <ul>
+          <li>Built responsive UI components and resolved visual bugs in a fast-paced team.</li>
+          <li>Earned 2 promotions within a single year for consistent delivery.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hr"></div>
+
+    <!-- Projects -->
+    <div class="m-head">
+      <span class="glyph"><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 16 4-4-4-4M6 8l-4 4 4 4M14.5 4l-5 16"/></svg></span>
+      <h2>Projects</h2>
+    </div>
+
+    <div class="proj">
+      <div class="proj-title">Yaha Chha — Freelance Marketplace
+        <a class="lnk" href="https://yahachha.com"><svg class="i" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+      </div>
+      <p class="proj-desc">B2C marketplace connecting verified freelancers with clients across Nepal — job posting, bidding, milestone payments, real-time chat &amp; KYC. Web, Android &amp; iOS.</p>
+      <div class="tags"><span>Next.js</span><span>TypeScript</span><span>Tailwind CSS</span><span>Node.js</span><span>Socket.IO</span><span>Prisma</span></div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-title">StampEzee — Digital Loyalty Platform
+        <a class="lnk" href="https://www.stampezee.com"><svg class="i" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+      </div>
+      <p class="proj-desc">B2B loyalty SaaS — branded stamp cards, automated reward campaigns, gamification &amp; analytics. 100+ active businesses and 7,500+ repeat visits tracked.</p>
+      <div class="tags"><span>Next.js</span><span>TypeScript</span><span>Tailwind CSS</span><span>Node.js</span><span>Expo</span><span>PostgreSQL</span></div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-title">Moto Life — E-commerce Platform</div>
+      <p class="proj-desc">Premium e-commerce for motorcycle accessories &amp; riding gear — product catalog, cart, checkout flow, and advanced search &amp; filters.</p>
+      <div class="tags"><span>Next.js</span><span>TypeScript</span><span>Redux</span><span>Tailwind CSS</span><span>Stripe</span></div>
+    </div>
+
+    <div class="hr"></div>
+
+    <!-- Achievements -->
+    <div class="m-head">
+      <span class="glyph"><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9a6 6 0 0 0 12 0V3H6v6Z"/><path d="M6 5H3v2a3 3 0 0 0 3 3M18 5h3v2a3 3 0 0 1-3 3M9 21h6M12 15v6"/></svg></span>
+      <h2>Achievements</h2>
+    </div>
+    <div class="ach"><svg class="i chk" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><p>Promoted twice within a single year — Junior → Mid → Senior Frontend Engineer.</p></div>
+    <div class="ach"><svg class="i chk" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><p>Led front-end delivery for two production SaaS products serving 100+ businesses.</p></div>
+    <div class="ach"><svg class="i chk" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><p>530+ GitHub contributions across 53 repositories with a focus on performance.</p></div>
+  </main>
+</div>
+</body>
+</html>

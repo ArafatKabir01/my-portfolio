@@ -2,7 +2,6 @@
 
 import { Download } from "lucide-react";
 import { useActiveSection } from "@/hooks";
-import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { NAV_LINKS, PROFILE } from "@/lib/landing-data";
 
 const IDS = NAV_LINKS.map((l) => l.id);
@@ -33,12 +32,12 @@ export function LandingNav() {
             <a
               className="lp-cv-btn"
               href={PROFILE.resumeHref}
+              download="Arafat-Kabir-Resume.pdf"
               data-cursor="hover"
               data-cursor-label="CV"
             >
               Download CV <Download size={14} />
             </a>
-            <ThemeToggle />
           </div>
         </nav>
       </div>

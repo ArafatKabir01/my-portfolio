@@ -3,7 +3,7 @@
 import { ArrowRight, MessageCircle, Mail } from "lucide-react";
 import { magneticHandlers } from "@/hooks";
 import { CodeWindow } from "./code-window";
-import { GithubIcon, LinkedinIcon, TwitterIcon } from "@/components/shared/brand-icons";
+import { GithubIcon, LinkedinIcon } from "@/components/shared/brand-icons";
 import type { HeroData } from "@/lib/models/hero.model";
 
 type Props = { data?: HeroData | null };
@@ -19,7 +19,6 @@ export function Hero({ data }: Props) {
   const secondaryBtnLabel = data?.secondaryBtnLabel ?? "Contact Me";
   const githubUrl = data?.githubUrl ?? "#";
   const linkedinUrl = data?.linkedinUrl ?? "#";
-  const twitterUrl = data?.twitterUrl ?? "#";
   const emailHref = data?.emailAddress ? `mailto:${data.emailAddress}` : "#";
 
   return (
@@ -57,7 +56,6 @@ export function Hero({ data }: Props) {
           <div className="social-icons">
             <a href={githubUrl} data-cursor="hover" data-cursor-label="GitHub" aria-label="GitHub"><GithubIcon size={16} /></a>
             <a href={linkedinUrl} data-cursor="hover" data-cursor-label="LinkedIn" aria-label="LinkedIn"><LinkedinIcon size={16} /></a>
-            <a href={twitterUrl} data-cursor="hover" data-cursor-label="Twitter" aria-label="Twitter"><TwitterIcon size={16} /></a>
             <a href={emailHref} data-cursor="hover" data-cursor-label="Email" aria-label="Email"><Mail size={16} /></a>
           </div>
         </div>

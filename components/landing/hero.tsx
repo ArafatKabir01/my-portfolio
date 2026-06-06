@@ -1,5 +1,5 @@
 import { ArrowRight, MessageCircle, Mail } from "lucide-react";
-import { GithubIcon, LinkedinIcon, TwitterIcon } from "@/components/shared/brand-icons";
+import { GithubIcon, LinkedinIcon } from "@/components/shared/brand-icons";
 import { LiveCode } from "./live-code";
 import { PROFILE } from "@/lib/landing-data";
 
@@ -45,9 +45,6 @@ export function Hero() {
           </a>
           <a href={s.linkedin} aria-label="LinkedIn" data-cursor="hover" data-cursor-label="LinkedIn">
             <LinkedinIcon size={18} />
-          </a>
-          <a href={s.twitter} aria-label="Twitter" data-cursor="hover" data-cursor-label="Twitter">
-            <TwitterIcon size={18} />
           </a>
           <a href={s.email} aria-label="Email" data-cursor="hover" data-cursor-label="Email">
             <Mail size={18} />

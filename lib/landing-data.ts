@@ -4,23 +4,23 @@
 // ─────────────────────────────────────────────────────────────
 
 export const PROFILE = {
-  name: "Arafat",
-  brand: "DevPortfolio",
+  name: "Arafat Kabir",
+  brand: "Arafat Kabir",
   role: "Frontend Engineer",
   headlineLine1: "Frontend Engineer &",
   headlineLine2: "Product Builder",
   lead: "I craft exceptional digital experiences with modern technologies and a passion for innovation.",
   status: "Available for new opportunities",
-  email: "hello@arafat.dev",
-  location: "Remote · Worldwide",
-  resumeHref: "#",
+  email: "nabil786.ak@gmail.com",
+  phone: "(+880) 1856-533434",
+  location: "Chottagram, Bangladesh 4217",
+  resumeHref: "/arafat-kabir-resume.pdf",
   // Drop your portrait into /public and set this to e.g. "/portrait.jpg"
   portrait: "/arafat.png" as string,
   socials: {
     github: "https://github.com/ArafatKabir01",
-    linkedin: "#",
-    twitter: "#",
-    email: "mailto:hello@arafat.dev",
+    linkedin: "https://www.linkedin.com/in/arafat-ibne-kabir",
+    email: "mailto:nabil786.ak@gmail.com",
   },
 } as const;
 
@@ -36,7 +36,7 @@ export const NAV_LINKS = [
 // Live coding window content (hero, right side)
 export const HERO_CODE = [
   { t: "const ", c: "kw", a: [{ t: "developer", c: "var" }, { t: " = {", c: "punc" }] },
-  { i: 1, t: "name", c: "prop", a: [{ t: ": ", c: "punc" }, { t: '"Arafat"', c: "str" }, { t: ",", c: "punc" }] },
+  { i: 1, t: "name", c: "prop", a: [{ t: ": ", c: "punc" }, { t: '"Arafat Kabir"', c: "str" }, { t: ",", c: "punc" }] },
   { i: 1, t: "role", c: "prop", a: [{ t: ": ", c: "punc" }, { t: '"Frontend Engineer"', c: "str" }, { t: ",", c: "punc" }] },
   { i: 1, t: "location", c: "prop", a: [{ t: ": ", c: "punc" }, { t: '"Remote"', c: "str" }, { t: ",", c: "punc" }] },
   { i: 1, t: "skills", c: "prop", a: [{ t: ": [", c: "punc" }, { t: '"React"', c: "str" }, { t: ", ", c: "punc" }, { t: '"Next.js"', c: "str" }, { t: ", ", c: "punc" }, { t: '"TypeScript"', c: "str" }, { t: "],", c: "punc" }] },
@@ -86,7 +86,7 @@ export const FEATURED_PROJECTS = [
     subtitle: "Freelance marketplace connecting clients & creative freelancers",
     desc: "Yaha Chha is a complete freelance marketplace connecting service providers (sellers) with clients (buyers). The platform supports photography, makeup, videography, editing, social media marketing, and other creative services.",
     banner: {
-      src: "https://cdn.rootdevs.com/assets/case-study/yaha-chha/yaha-chha-banner.webp",
+      src: "https://cdn.rootdevs.com/assets/homepg/yaha-chha.webp",
       alt: "Yaha Chha — freelance marketplace product banner",
       width: 1600,
       height: 900,
@@ -118,7 +118,27 @@ export const FEATURED_PROJECTS = [
       { label: "Front-End lead By", value: "Arafat Kabir" },
     ],
     tags: ["Stamp Cards", "Rewards", "Campaigns", "Automation", "Analytics", "Customer Insights"],
-    caseStudyHref: "#",
+    caseStudyHref: "/case-study/stampezee",
+  },
+  {
+    label: "Featured Project",
+    title: "Moto Life",
+    subtitle: "Premium e-commerce platform for motorcycle accessories and riding gear",
+    desc: "Moto Life is a dedicated e-commerce destination for motorcycle enthusiasts, offering a wide range of premium motorcycles, riding gear, accessories, and exclusive deals. Designed for a seamless shopping experience, the platform makes it easy for riders to find everything they need in one trusted destination.",
+    banner: {
+      src: "https://i.ibb.co.com/LM0PMGg/Chat-GPT-Image-May-3-2026-03-19-00-PM-1-Edited.png",
+      alt: "Moto Life — Premium Bike Accessories product banner",
+      width: 1600,
+      height: 900,
+    },
+    info: [
+      { label: "Business Type", value: "B2C E-commerce" },
+      { label: "Category", value: "Automotive Accessories" },
+      { label: "Platforms", value: "Web Dashboard" },
+      { label: "Project lead By", value: "Arafat Kabir" },
+    ],
+    tags: ["E-commerce", "Product Catalog", "Cart System", "Checkout", "Search & Filters"],
+    caseStudyHref: "/case-study/motolife",
   },
 ] as const;
 
@@ -129,34 +149,59 @@ export const SKILLS = [
   { name: "React", level: 95, icon: "react", color: "#61dafb" },
   { name: "Next.js", level: 92, icon: "next", color: "#ffffff" },
   { name: "TypeScript", level: 90, icon: "ts", color: "#3178c6" },
+  { name: "JavaScript", level: 95, icon: "js", color: "#f7df1e" },
+  { name: "HTML5", level: 95, icon: "html", color: "#e34f26" },
+  { name: "CSS3", level: 94, icon: "css", color: "#1572b6" },
   { name: "Tailwind CSS", level: 88, icon: "tailwind", color: "#38bdf8" },
-  { name: "Node.js", level: 85, icon: "node", color: "#3c873a" },
+  { name: "Socket.io", level: 85, icon: "socketio", color: "#ffffff" },
   { name: "Redux", level: 86, icon: "redux", color: "#764abc" },
-  { name: "Express", level: 84, icon: "express", color: "#ffffff" },
   { name: "Framer Motion", level: 88, icon: "framer", color: "#ff5ca0" },
   { name: "shadcn/ui", level: 89, icon: "shadcn", color: "#ffffff" },
+  { name: "Node.js", level: 85, icon: "node", color: "#3c873a" },
+  { name: "Express", level: 84, icon: "express", color: "#ffffff" },
+  { name: "Git", level: 90, icon: "git", color: "#f05032" },
   { name: "AI Integration", level: 87, icon: "ai", color: "#a78bfa" },
 ] as const;
 
 export const EXPERIENCE = [
   {
-    when: "Dec 2023 — Present",
+    when: "Aug 2024 — Present",
     title: "Senior Frontend Engineer",
     company: "Rootdevs",
-    desc: "Joined as a Junior Frontend Engineer and grew into a Senior role through two promotions, leading frontend delivery and mentoring across projects.",
+    desc: "Primary current role leading front-end architecture and UI delivery for key products. Mentoring developers and setting up high-performance design system standards.",
     metrics: [
-      { k: "Career Path", v: "Junior → Mid → Senior" },
-      { k: "Promotions", v: "2 in 2 years" },
+      { k: "Leadership", v: "Mentoring & Arch" },
+      { k: "Tech", v: "Next.js, TS, Tailwind" },
     ],
   },
   {
-    when: "Oct 2022 — May 2023",
-    title: "Frontend Developer",
-    company: "SIMMI Foundation",
-    desc: "Remote contractual role building and maintaining responsive web interfaces for the organization.",
+    when: "Jan 2025 — Present",
+    title: "Project Manager",
+    company: "Quickxero",
+    desc: "Remote role leading agile ceremonies, project planning, and cross-functional teams to deliver high-quality digital products. Ensuring alignment between business goals and development scope.",
     metrics: [
-      { k: "Engagement", v: "Remote · Contract" },
-      { k: "Technologies", v: "React, JS, CSS" },
+      { k: "Focus", v: "Agile Leadership (Remote)" },
+      { k: "Deliverables", v: "On-time Shipping" },
+    ],
+  },
+  {
+    when: "Apr 2024 — Aug 2024",
+    title: "Mid Frontend Engineer",
+    company: "Rootdevs",
+    desc: "Owned major features end-to-end, optimized rendering performance, and integrated complex third-party REST/GraphQL APIs.",
+    metrics: [
+      { k: "Ownership", v: "Feature Lead" },
+      { k: "Performance", v: "Lighthouse Optimization" },
+    ],
+  },
+  {
+    when: "Dec 2023 — Apr 2024",
+    title: "Junior Frontend Engineer",
+    company: "Rootdevs",
+    desc: "Built responsive UI components, resolved visual bugs, and learned modern frontend workflows in a fast-paced environment.",
+    metrics: [
+      { k: "Role", v: "UI Specialist" },
+      { k: "Growth", v: "2 promotions in 1 year" },
     ],
   },
 ] as const;
@@ -174,38 +219,51 @@ export const GITHUB = {
 export const TESTIMONIALS = [
   {
     quote:
-      "Arafat is an exceptional developer who consistently delivers high-quality code and innovative solutions.",
-    name: "Sarah Johnson",
-    role: "Product Manager at TechCorp",
+      "Arafat built our complex marketplace into a smooth, intuitive experience.",
+    name: "Roshan Thapa",
+    role: "Founder, Yaha Chha",
     rating: 5,
+    image: "/avatar_roshan_1780751107612.png",
   },
   {
     quote:
-      "Working with Arafat was a game-changer for our project. His expertise and dedication are unmatched.",
-    name: "Mike Chen",
-    role: "CTO at StartupXYZ",
+      "He delivered a premium dashboard and scanning flows that our merchants love.",
+    name: "Aarav",
+    role: "Co-Founder, StampEzee",
     rating: 5,
+    image: "/avatar_aarav_1780751120148.png",
+  },
+  {
+    quote:
+      "Arafat bridges the gap between clean code and business goals perfectly.",
+    name: "Elias Khan",
+    role: "CEO, Rootdevs",
+    rating: 5,
+    image: "/avatar_rahman_1780751133349.png",
   },
 ] as const;
 
 export const ARTICLES = [
   {
-    title: "Building Scalable React Applications with TypeScript",
-    date: "May 28, 2024",
-    read: "8 min read",
-    accent: "#7c5cff",
+    title: "Optimizing QR Code Scanning & Performance in React Native",
+    date: "May 28, 2026",
+    read: "7 min read",
+    accent: "#61dafb",
+    image: "/article_qr_1780751147273.png",
   },
   {
-    title: "AI Integration in Modern Web Applications",
-    date: "May 20, 2024",
-    read: "12 min read",
-    accent: "#60a5fa",
+    title: "How We Built a Scalable Real-Time Chat System for a Freelance Marketplace",
+    date: "Apr 15, 2026",
+    read: "9 min read",
+    accent: "#06b6d4",
+    image: "/article_chat_1780751160605.png",
   },
   {
-    title: "Performance Optimization Best Practices",
-    date: "May 15, 2024",
+    title: "The Frontend PM: Bridging the Gap Between Code and Product Management",
+    date: "Mar 10, 2026",
     read: "6 min read",
-    accent: "#ec4899",
+    accent: "#7c5cff",
+    image: "/article_pm_1780751175824.png",
   },
 ] as const;
 

@@ -2,7 +2,6 @@
 
 import { Download } from "lucide-react";
 import { useActiveSection } from "@/hooks";
-import { ThemeToggle } from "@/components/shared/theme-toggle";
 
 const LINKS = [
   { id: "home", label: "Home" },
@@ -18,7 +17,7 @@ export function Nav() {
   return (
     <nav className="nav" data-cursor="hover">
       <a href="#home" className="logo" data-cursor="hover" data-cursor-label="Top">
-        Arafat<span className="dot">.</span>
+        Arafat Kabir<span className="dot">.</span>
       </a>
       <div className="nav-links">
         {LINKS.map((l) => (
@@ -33,7 +32,6 @@ export function Nav() {
         ))}
       </div>
       <div className="nav-actions">
-        <ThemeToggle />
         <a className="resume-btn" href="#" data-cursor="hover" data-cursor-label="PDF">
           <Download size={14} /> Download Resume
         </a>

@@ -525,7 +525,7 @@ body.light .lp-featured-sticky > .lp-featured {
   border: 1px solid rgba(255,255,255,0.08); background: #0c0b14;
   box-shadow: 0 30px 70px -28px rgba(0,0,0,0.8);
 }
-.lp-featured-banner { display: block; width: 100%; height: auto; object-fit: cover; }
+.lp-featured-banner { display: block; width: 100%; aspect-ratio: 16 / 14; object-fit: cover; }
 .lp-dash-top { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02); }
 .lp-dash-title { font-size: 12px; font-weight: 600; color: var(--muted); }
 .lp-dash-tabs { margin-left: auto; display: flex; gap: 14px; font: 500 11px var(--font-jetbrains), monospace; color: var(--muted-2); }
@@ -585,7 +585,8 @@ body.light .lp-featured-sticky > .lp-featured {
 .lp-exp-metric span { color: var(--muted-2); }
 
 /* ───────── GITHUB + TESTIMONIALS + ARTICLES (3-col) ──────── */
-.lp-3col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: start; }
+.lp-3col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: stretch; }
+.lp-3col .lp-panel { display: flex; flex-direction: column; height: 100%; }
 
 /* github activity */
 .lp-gh-grid { display: grid; grid-template-columns: repeat(14, 1fr); gap: 4px; margin: 6px 0 20px; }
@@ -770,6 +771,8 @@ body[data-page="case-study"] { background: #08090c; }
 .topbar .crumb { font: 500 13px var(--font-jetbrains), monospace; color: var(--cs-faint); display: inline-flex; align-items: center; gap: 8px; }
 .topbar .crumb b { color: var(--cs-ink); font-weight: 600; font-family: var(--font-inter), sans-serif; }
 .topbar .actions { display: flex; gap: 10px; align-items: center; }
+/* the Repo trigger is a <button> — strip native chrome so it matches the .back chips */
+.topbar .actions button.back { appearance: none; background: none; cursor: pointer; font-family: inherit; }
 
 /* ───────────────────────── HERO ───────────────────────── */
 .study-hero { padding: 56px 0 10px; position: relative; text-align: center; }
@@ -1123,6 +1126,214 @@ body[data-page="case-study"] { background: #08090c; }
   transform: translateX(-120%); transition: transform .9s ease;
 }
 .img-frame:hover .img-frame-shine { transform: translateX(120%); }
+
+/* ── zoomable image frame → opens the lightbox on click ── */
+.img-frame.is-zoomable { cursor: zoom-in; }
+.img-frame.is-zoomable:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+}
+.img-frame-zoom {
+  position: absolute; top: 12px; right: 12px; z-index: 3;
+  display: grid; place-items: center;
+  width: 34px; height: 34px; border-radius: 10px;
+  color: #fff; background: rgba(12, 14, 18, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(6px);
+  opacity: 0; transform: translateY(-4px) scale(0.95);
+  transition: opacity .25s ease, transform .25s ease;
+  pointer-events: none;
+}
+.img-frame.is-zoomable:hover .img-frame-zoom,
+.img-frame.is-zoomable:focus-visible .img-frame-zoom {
+  opacity: 1; transform: translateY(0) scale(1);
+}
+
+/* ── lightbox / full-image viewer ── */
+.lightbox {
+  /* gutter kept around the image on every side */
+  --lb-gutter: clamp(16px, 4vw, 56px);
+  position: fixed; inset: 0; z-index: 200;
+  display: grid; place-items: center;
+  padding: var(--lb-gutter);
+  background: rgba(8, 9, 12, 0.86);
+  backdrop-filter: blur(8px);
+  cursor: zoom-out;
+  animation: lightbox-fade .2s ease;
+}
+.lightbox-img {
+  /* fit the viewport minus the gutter on both axes; dvh tracks mobile chrome */
+  max-width: calc(100vw - var(--lb-gutter) * 2);
+  max-height: calc(100dvh - var(--lb-gutter) * 2);
+  width: auto; height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 40px 120px -30px rgba(0, 0, 0, 0.9);
+  cursor: default;
+  animation: lightbox-pop .24s cubic-bezier(.2, .8, .2, 1);
+}
+.lightbox-close {
+  position: absolute; top: clamp(12px, 2vw, 24px); right: clamp(12px, 2vw, 24px);
+  z-index: 1; appearance: none; cursor: pointer;
+  width: 44px; height: 44px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-size: 28px; line-height: 1; color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: background .2s ease, transform .2s ease;
+}
+.lightbox-close:hover { background: rgba(255, 255, 255, 0.22); transform: scale(1.06); }
+@keyframes lightbox-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes lightbox-pop {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lightbox, .lightbox-img { animation: none; }
+}
+
+/* ── private-repo modal (opened from the top-bar "Repo" button) ── */
+.repo-modal {
+  position: fixed; inset: 0; z-index: 200;
+  display: grid; place-items: center;
+  padding: clamp(12px, 4vw, 40px);
+  background: rgba(8, 9, 12, 0.82);
+  backdrop-filter: blur(10px);
+  animation: lightbox-fade .2s ease;
+}
+.repo-card {
+  position: relative;
+  width: min(460px, 100%);
+  /* never taller than the viewport — content scrolls inside if it has to */
+  max-height: calc(100dvh - clamp(24px, 8vw, 80px));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  background:
+    radial-gradient(120% 80% at 50% -10%, color-mix(in srgb, var(--cs-brand) 18%, transparent), transparent 60%),
+    var(--cs-ink-band);
+  border: 1px solid var(--cs-band-line);
+  border-radius: 20px;
+  padding: 34px 30px 30px;
+  box-shadow: 0 40px 120px -30px rgba(0, 0, 0, 0.95);
+  color: var(--cs-ink);
+  text-align: center;
+  animation: repo-pop .26s cubic-bezier(.2, .8, .2, 1);
+}
+/* slim scrollbar that matches the dark surface */
+.repo-card::-webkit-scrollbar { width: 8px; }
+.repo-card::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 8px; }
+.repo-close {
+  position: absolute; top: 16px; right: 16px; z-index: 2;
+  appearance: none; cursor: pointer;
+  width: 34px; height: 34px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-size: 22px; line-height: 1; color: var(--cs-muted);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--cs-band-line);
+  transition: background .2s ease, color .2s ease, transform .2s ease;
+}
+.repo-close:hover { background: rgba(255, 255, 255, 0.14); color: var(--cs-ink); transform: rotate(90deg) scale(1.05); }
+.repo-lock {
+  display: grid; place-items: center;
+  width: 64px; height: 64px; border-radius: 18px;
+  margin: 4px auto 18px;
+  color: var(--cs-brand-2);
+  background: color-mix(in srgb, var(--cs-brand) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cs-brand) 38%, transparent);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--cs-brand) 8%, transparent);
+}
+.repo-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font: 600 11px var(--font-jetbrains), monospace;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--cs-brand-2);
+  padding: 4px 10px; border-radius: 999px; margin-bottom: 12px;
+  background: color-mix(in srgb, var(--cs-brand) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cs-brand) 30%, transparent);
+}
+.repo-title {
+  font-family: var(--font-sora), sans-serif; font-weight: 700;
+  font-size: 22px; letter-spacing: -0.02em; margin: 0 0 12px; color: var(--cs-ink);
+}
+.repo-body { font-size: 14px; line-height: 1.65; color: var(--cs-muted); margin: 0 0 12px; }
+.repo-body b { color: var(--cs-ink); font-weight: 600; }
+/* "what you'll get on the call" list */
+.repo-perks {
+  list-style: none; margin: 18px 0 0; padding: 0;
+  display: flex; flex-direction: column; gap: 10px;
+  text-align: left;
+}
+.repo-perks li {
+  display: flex; align-items: center; gap: 11px;
+  font-size: 13.5px; line-height: 1.4; color: var(--cs-ink);
+}
+.repo-perk-ic {
+  flex: none; display: grid; place-items: center;
+  width: 30px; height: 30px; border-radius: 9px;
+  color: var(--cs-brand-2);
+  background: color-mix(in srgb, var(--cs-brand) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cs-brand) 28%, transparent);
+}
+.repo-meet {
+  margin-top: 22px; padding: 20px;
+  text-align: left;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--cs-band-line);
+}
+.repo-meet-head {
+  display: inline-flex; align-items: center; gap: 8px;
+  font: 600 13px var(--font-jetbrains), monospace; color: var(--cs-ink);
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.repo-meet-head svg { color: var(--cs-brand-2); }
+.repo-meet-sub { font-size: 13px; line-height: 1.5; color: var(--cs-faint); margin: 8px 0 14px; }
+.repo-cta {
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+  width: 100%; padding: 13px 16px; border-radius: 12px;
+  font-size: 14px; font-weight: 700; text-decoration: none;
+  color: #ffffff;
+  background: linear-gradient(90deg, var(--cs-brand), var(--cs-brand-2));
+  box-shadow: 0 8px 24px -10px color-mix(in srgb, var(--cs-brand) 70%, transparent);
+  transition: filter .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.repo-cta svg { color: #ffffff; }
+.repo-cta:hover {
+  filter: brightness(1.08); transform: translateY(-1px);
+  box-shadow: 0 12px 30px -10px color-mix(in srgb, var(--cs-brand) 80%, transparent);
+}
+.repo-cta-arrow { transition: transform .2s ease; }
+.repo-cta:hover .repo-cta-arrow { transform: translateX(3px); }
+.repo-mail-link {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  width: 100%; margin-top: 12px;
+  font: 500 13px var(--font-jetbrains), monospace;
+  color: var(--cs-muted); text-decoration: none; transition: color .2s;
+}
+.repo-mail-link svg { opacity: .7; }
+.repo-mail-link:hover { color: var(--cs-brand-2); }
+@keyframes repo-pop {
+  from { opacity: 0; transform: translateY(12px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .repo-modal, .repo-card { animation: none; }
+}
+/* phones: dock to the bottom as a sheet so everything stays reachable */
+@media (max-width: 540px) {
+  .repo-modal { place-items: end center; padding: 0; }
+  .repo-card {
+    width: 100%; max-height: 90dvh;
+    border-radius: 20px 20px 0 0;
+    padding: 28px 22px calc(24px + env(safe-area-inset-bottom));
+    animation-name: repo-sheet-up;
+  }
+}
+@keyframes repo-sheet-up {
+  from { opacity: 0; transform: translateY(100%); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 /* ── reveal (case study uses the global .reveal/.in) ── */
 

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { DevPhase, GoalStep } from "@/lib/data";
+import { useLightbox } from "@/components/case-study/lightbox";
 
 /* ──────────────────────────────────────────────────────────
    useInView — fire a one-shot boolean when an element scrolls in.
@@ -50,6 +51,7 @@ export function SectionArrow() {
 /* ──────────────────────────────────────────────────────────
    ImageFrame — styled <img> placeholder.
    Any host works; swap the `src` for real screenshots later.
+   Click to open the shared lightbox and view the full image.
    ────────────────────────────────────────────────────────── */
 export function ImageFrame({
   src,
@@ -65,8 +67,23 @@ export function ImageFrame({
   browser?: string;
   className?: string;
 }) {
+  const { open } = useLightbox();
   return (
-    <figure className={`img-frame reveal ${className}`} style={{ aspectRatio: ratio }}>
+    <figure
+      className={`img-frame reveal is-zoomable ${className}`}
+      style={{ aspectRatio: ratio }}
+      onClick={() => open({ src, alt })}
+      role="button"
+      tabIndex={0}
+      aria-label={`${alt} — view full image`}
+      data-cursor="hover"
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          open({ src, alt });
+        }
+      }}
+    >
       {browser && (
         <div className="img-frame-bar">
           <span className="dot" style={{ background: "#ff5f57" }} />
@@ -77,6 +94,14 @@ export function ImageFrame({
       )}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={src} alt={alt} loading="lazy" decoding="async" />
+      <span className="img-frame-zoom" aria-hidden>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+          <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
+          <line x1="16" y1="16" x2="21" y2="21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          <line x1="11" y1="8" x2="11" y2="14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          <line x1="8" y1="11" x2="14" y2="11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      </span>
       <span className="img-frame-shine" aria-hidden />
     </figure>
   );

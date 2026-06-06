@@ -1,4 +1,4 @@
-import { ArrowRight, Layout, Palette, Gauge, Sparkles, Mail, MapPin } from "lucide-react";
+import { ArrowRight, Layout, Palette, Gauge, Sparkles, Mail, MapPin, Phone } from "lucide-react";
 import { SERVICES, PROFILE } from "@/lib/landing-data";
 
 const ICONS = {
@@ -57,6 +57,9 @@ export function ServicesContact() {
             </span>
             <span>
               <MapPin size={16} /> {PROFILE.location}
+            </span>
+            <span>
+              <Phone size={16} /> {PROFILE.phone}
             </span>
           </div>
           <a href={PROFILE.socials.email} className="lp-btn lp-btn-primary" data-cursor="hover" data-cursor-label="Email">

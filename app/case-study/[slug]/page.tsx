@@ -4,6 +4,7 @@ import { CASE_STUDIES } from "@/lib/data";
 import { TopBar } from "@/components/case-study/top-bar";
 import { SideTOC } from "@/components/case-study/side-toc";
 import { BodyClass } from "@/components/case-study/body-class";
+import { LightboxProvider } from "@/components/case-study/lightbox";
 import { ScrollProgress } from "@/components/shared/progress-bar";
 import {
   Hero,
@@ -48,25 +49,27 @@ export default async function CaseStudyPage({ params }: { params: Promise<Params
     <>
       <BodyClass value="case-study" />
       <ScrollProgress />
-      <TopBar slug={slug} />
+      <TopBar slug={slug} liveUrl={data.liveUrl} brand={data.brand} meetingEmail={data.meetingEmail} />
       <SideTOC items={data.toc} />
-      <main className="page cs-page">
-        <Hero data={data} />
-        <Overview data={data} />
-        <Info data={data} />
-        <Goals data={data} />
-        <Challenge data={data} />
-        <Motivate data={data} />
-        <Process data={data} />
-        <Strategy data={data} />
-        <Tech data={data} />
-        <Build data={data} />
-        <Solved data={data} />
-        <Impact data={data} />
-        <UX data={data} />
-        <Features data={data} />
-        <Feedback data={data} />
-      </main>
+      <LightboxProvider>
+        <main className="page cs-page">
+          <Hero data={data} />
+          <Overview data={data} />
+          <Info data={data} />
+          <Goals data={data} />
+          <Challenge data={data} />
+          <Motivate data={data} />
+          <Process data={data} />
+          <Strategy data={data} />
+          <Tech data={data} />
+          <Build data={data} />
+          <Solved data={data} />
+          <Impact data={data} />
+          <UX data={data} />
+          <Features data={data} />
+          <Feedback data={data} />
+        </main>
+      </LightboxProvider>
     </>
   );
 }
