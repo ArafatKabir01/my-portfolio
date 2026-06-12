@@ -12,7 +12,7 @@ export const PROFILE = {
   lead: "I craft exceptional digital experiences with modern technologies and a passion for innovation.",
   status: "Available for new opportunities",
   email: "nabil786.ak@gmail.com",
-  phone: "(+880) 1856-533434",
+  phone: "(+880) 1859-670492",
   location: "Chottagram, Bangladesh 4217",
   resumeHref: "/arafat-kabir-resume.pdf",
   // Drop your portrait into /public and set this to e.g. "/portrait.jpg"
